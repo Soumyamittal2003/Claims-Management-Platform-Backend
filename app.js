@@ -1,15 +1,20 @@
 import express from "express";
 import cors from "cors";
+import path from "path";
 import mongoose from "mongoose";
 import cookieParser from "cookie-parser";
 import http from "http";
 import "dotenv/config";
-
+import { fileURLToPath } from "url";
 
 // Initialize Express app
 const app = express();
 const PORT = process.env.PORT || 5000;
 const server = http.createServer(app);
+
+// Define __dirname for ES Modules
+const __filename = fileURLToPath(import.meta.url);
+const __dirname = path.dirname(__filename);
 
 // Import routes
 import userRoute from "./routes/userRoute.js";
@@ -19,6 +24,7 @@ import claimRoute from "./routes/claimRoute.js";
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 app.use(cookieParser());
+app.use("/uploads", express.static(path.join(__dirname, "uploads")));
 app.use(
     cors({
       origin: [
@@ -44,7 +50,7 @@ mongoose.connect(process.env.MONGO_URL,{
 
 // Routes
 app.use(`/users`, userRoute);
-app.use(`/claim`, claimRoute);
+app.use(`/claims`, claimRoute);
 
 
 // Start server

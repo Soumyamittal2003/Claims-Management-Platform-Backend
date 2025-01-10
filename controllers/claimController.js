@@ -11,7 +11,7 @@ export const submitClaim = async (req, res) => {
         .status(400)
         .json({ error: "Policy name and claim amount are required" });
     }
-    //console.log(req.user.id);
+
     const newClaim = new Claim({
       createdBy: req.user.id,
       policyName,
@@ -20,17 +20,20 @@ export const submitClaim = async (req, res) => {
     });
 
     if (req.file) {
+      console.log("Uploaded File Path:", req.file.path);
       newClaim.uploadedDocument = req.file.path;
+    } else {
+      console.log("No file uploaded");
     }
 
     await newClaim.save();
-    res
-      .status(201)
-      .json({ message: "Claim submitted successfully", claimId: newClaim._id });
+    res.status(201).json({ message: "Claim submitted successfully", claimId: newClaim._id });
   } catch (error) {
+    console.error("Error submitting claim:", error.message);
     res.status(500).json({ error: error.message });
   }
 };
+
 
 // all claims for the logged-in patient
 export const getMyClaims = async (req, res) => {

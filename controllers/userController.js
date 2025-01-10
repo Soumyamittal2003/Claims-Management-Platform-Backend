@@ -186,3 +186,25 @@ export const getUsers = async (req, res) => {
       .json({ message: "Error fetching users", error: error.message });
   }
 };
+
+
+//get user by id
+export const getUserById = async (req, res) => {
+  const { userid } = req.params; // Extract ID from params
+
+  try {
+    // Find user by ID and exclude the password field
+    const user = await User.findById(userid).select("-password");
+
+    if (!user) {
+      return res.status(404).json({ error: "User not found!" }); // Handle user not found
+    }
+
+    res.status(200).json({ success: true, data: user }); // Send user data as response
+  } catch (err) {
+    res.status(400).json({
+      error: "Invalid ID format or server error!",
+      details: err.message,
+    }); // Handle errors
+  }
+};

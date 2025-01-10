@@ -27,7 +27,12 @@ app.use(cookieParser());
 app.use("/uploads", express.static(path.join(__dirname, "uploads")));
 app.use(
   cors({
-    origin: ["http://localhost:5173", "http://localhost:3001","https://claims-management-platform.vercel.app/" ,],
+    origin: [
+      "http://localhost:5173",
+      "http://localhost:3001",
+      "https://claims-management-platform.vercel.app",
+      "https://claims-management-platform-backend.onrender.com",
+    ],
     methods: "GET,PUT,PATCH,POST,DELETE",
     credentials: true,
   })

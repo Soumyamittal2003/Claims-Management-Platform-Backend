@@ -1,6 +1,5 @@
 import mongoose from "mongoose";
 
-
 const claimSchema = new mongoose.Schema(
   {
     createdBy: {
@@ -14,7 +13,7 @@ const claimSchema = new mongoose.Schema(
     },
     claimAmount: { type: Number, required: true },
     description: { type: String, required: true },
-    uploadedDocument: { type: String,required: false },
+    uploadedDocument: { type: String, required: false },
     status: {
       type: String,
       enum: ["Pending", "Approved", "Rejected"],
@@ -26,7 +25,6 @@ const claimSchema = new mongoose.Schema(
     reviewedBy: {
       type: mongoose.Schema.Types.ObjectId,
       ref: "User",
-      
     },
     reviewedDate: { type: Date },
   },

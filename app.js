@@ -26,35 +26,31 @@ app.use(express.urlencoded({ extended: true }));
 app.use(cookieParser());
 app.use("/uploads", express.static(path.join(__dirname, "uploads")));
 app.use(
-    cors({
-      origin: [
-        "http://localhost:5173",
-        "http://localhost:3001",
-        ,
-      ],
-      methods: "GET,PUT,PATCH,POST,DELETE",
-      credentials: true,
-    })
-  );
+  cors({
+    origin: ["http://localhost:5173", "http://localhost:3001", ,],
+    methods: "GET,PUT,PATCH,POST,DELETE",
+    credentials: true,
+  })
+);
 
 // Database connection
-mongoose.connect(process.env.MONGO_URL,{
-  dbName: "Claims-Management-Platform",
-}).then(() => {
-  console.log("Database connection is ready.");
-})
-.catch((err) => {
-  console.log("Database connection failed. Exiting now...", err);
-  process.exit(1);
-});
+mongoose
+  .connect(process.env.MONGO_URL, {
+    dbName: "Claims-Management-Platform",
+  })
+  .then(() => {
+    console.log("Database connection is ready.");
+  })
+  .catch((err) => {
+    console.log("Database connection failed. Exiting now...", err);
+    process.exit(1);
+  });
 
 // Routes
 app.use(`/users`, userRoute);
 app.use(`/claims`, claimRoute);
 
-
 // Start server
 server.listen(PORT, () => {
-    console.log(`Server running on http://localhost:${PORT}`);
-  });
-  
+  console.log(`Server running on http://localhost:${PORT}`);
+});

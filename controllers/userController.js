@@ -8,7 +8,7 @@ dotenv.config();
 export const signup = async (req, res) => {
   try {
     const { name, email, password, role, phone, address } = req.body;
-    
+
     console.log("Request body:", req.body);
     if (!name || !email || !password || !role || !phone || !address) {
       return res.status(400).json({
@@ -174,7 +174,6 @@ export const updateUser = async (req, res) => {
   }
 };
 
-
 // Get all users
 export const getUsers = async (req, res) => {
   try {
@@ -187,24 +186,22 @@ export const getUsers = async (req, res) => {
   }
 };
 
-
 //get user by id
 export const getUserById = async (req, res) => {
-  const { userid } = req.params; // Extract ID from params
+  const { userid } = req.params;
 
   try {
-    // Find user by ID and exclude the password field
     const user = await User.findById(userid).select("-password");
 
     if (!user) {
-      return res.status(404).json({ error: "User not found!" }); // Handle user not found
+      return res.status(404).json({ error: "User not found!" });
     }
 
-    res.status(200).json({ success: true, data: user }); // Send user data as response
+    res.status(200).json({ success: true, data: user });
   } catch (err) {
     res.status(400).json({
       error: "Invalid ID format or server error!",
       details: err.message,
-    }); // Handle errors
+    });
   }
 };

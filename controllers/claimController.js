@@ -27,13 +27,14 @@ export const submitClaim = async (req, res) => {
     }
 
     await newClaim.save();
-    res.status(201).json({ message: "Claim submitted successfully", claimId: newClaim._id });
+    res
+      .status(201)
+      .json({ message: "Claim submitted successfully", claimId: newClaim._id });
   } catch (error) {
     console.error("Error submitting claim:", error.message);
     res.status(500).json({ error: error.message });
   }
 };
-
 
 // all claims for the logged-in patient
 export const getMyClaims = async (req, res) => {
@@ -69,28 +70,23 @@ export const updateClaim = async (req, res) => {
     const { claimId } = req.params;
     const { status, approvedAmount, insurerComments } = req.body;
 
-    
     const validStatuses = ["Pending", "Approved", "Rejected"];
     if (status && !validStatuses.includes(status)) {
       return res.status(400).json({ error: "Invalid status value" });
     }
 
-    
     const claim = await Claim.findById(claimId);
     if (!claim) {
       return res.status(404).json({ error: "Claim not found" });
     }
 
-    
     if (status) claim.status = status;
-    if (approvedAmount !== undefined) claim.approvedAmount = approvedAmount; 
+    if (approvedAmount !== undefined) claim.approvedAmount = approvedAmount;
     if (insurerComments) claim.insurerComments = insurerComments;
 
-    
-    claim.reviewedBy = req.user.id; 
+    claim.reviewedBy = req.user.id;
     claim.reviewedDate = new Date();
 
-    
     await claim.save();
 
     res.status(200).json({ message: "Claim updated successfully", claim });

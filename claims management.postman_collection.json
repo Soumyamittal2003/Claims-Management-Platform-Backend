@@ -1,0 +1,295 @@
+{
+	"info": {
+		"_postman_id": "3e4cd63b-5dfd-454b-8119-1d11b1136864",
+		"name": "claims management",
+		"schema": "https://schema.getpostman.com/json/collection/v2.0.0/collection.json",
+		"_exporter_id": "34467922"
+	},
+	"item": [
+		{
+			"name": "claims",
+			"item": [
+				{
+					"name": "my-claims",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": "http://localhost:5000/claims/myclaims"
+					},
+					"response": []
+				},
+				{
+					"name": "create claim",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "formdata",
+							"formdata": [
+								{
+									"key": "policyName",
+									"value": "fwm,r",
+									"type": "text"
+								},
+								{
+									"key": "claimAmount",
+									"value": "4000",
+									"type": "text"
+								},
+								{
+									"key": "description",
+									"value": "1000",
+									"type": "text"
+								},
+								{
+									"key": "uploadedDocument",
+									"value": "",
+									"type": "file"
+								}
+							]
+						},
+						"url": "http://localhost:5000/claims/new-create"
+					},
+					"response": []
+				},
+				{
+					"name": "get claim by id",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": "http://localhost:5000/claims/677ffd741ef86635f9effaca"
+					},
+					"response": []
+				},
+				{
+					"name": "get all claims",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": "http://localhost:5000/claims/all-claims"
+					},
+					"response": []
+				},
+				{
+					"name": "update claim status",
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n  \"status\": \"Approved\",\r\n  \"approvedAmount\": 5000,\r\n  \"insurerComments\": \"Claim approved after verification.\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": "http://localhost:5000/claims/update/677ffd741ef86635f9effaca"
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "signup",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Cache-Control",
+						"value": "no-cache",
+						"name": "cache-control",
+						"type": "text"
+					},
+					{
+						"key": "Postman-Token",
+						"value": "<calculated when request is sent>",
+						"name": "postman-token",
+						"type": "text"
+					},
+					{
+						"key": "Content-Type",
+						"value": "text/plain",
+						"name": "content-type",
+						"type": "text"
+					},
+					{
+						"key": "Content-Length",
+						"value": "<calculated when request is sent>",
+						"name": "content-length",
+						"type": "text"
+					},
+					{
+						"key": "Host",
+						"value": "<calculated when request is sent>",
+						"name": "host",
+						"type": "text"
+					},
+					{
+						"key": "User-Agent",
+						"value": "PostmanRuntime/7.39.1",
+						"name": "user-agent",
+						"type": "text"
+					},
+					{
+						"key": "Accept",
+						"value": "*/*",
+						"name": "accept",
+						"type": "text"
+					},
+					{
+						"key": "Accept-Encoding",
+						"value": "gzip, deflate, br",
+						"name": "accept-encoding",
+						"type": "text"
+					},
+					{
+						"key": "Connection",
+						"value": "keep-alive",
+						"name": "connection",
+						"type": "text"
+					},
+					{
+						"key": "Content-Type",
+						"value": "application/json",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n  \"name\": \"soumya\",\r\n  \"email\": \"sm@gmail.com\",\r\n  \"password\": \"1234567890\",\r\n  \"role\": \"patient\",\r\n  \"phone\": \"1234567890\",\r\n  \"address\": \"fakjdhgkh\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "text"
+						}
+					}
+				},
+				"url": "http://localhost:5000/users/signup"
+			},
+			"response": []
+		},
+		{
+			"name": "Login",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Cache-Control",
+						"value": "no-cache",
+						"name": "cache-control",
+						"type": "text"
+					},
+					{
+						"key": "Postman-Token",
+						"value": "<calculated when request is sent>",
+						"name": "postman-token",
+						"type": "text"
+					},
+					{
+						"key": "Content-Type",
+						"value": "text/plain",
+						"name": "content-type",
+						"type": "text"
+					},
+					{
+						"key": "Content-Length",
+						"value": "<calculated when request is sent>",
+						"name": "content-length",
+						"type": "text"
+					},
+					{
+						"key": "Host",
+						"value": "<calculated when request is sent>",
+						"name": "host",
+						"type": "text"
+					},
+					{
+						"key": "User-Agent",
+						"value": "PostmanRuntime/7.39.1",
+						"name": "user-agent",
+						"type": "text"
+					},
+					{
+						"key": "Accept",
+						"value": "*/*",
+						"name": "accept",
+						"type": "text"
+					},
+					{
+						"key": "Accept-Encoding",
+						"value": "gzip, deflate, br",
+						"name": "accept-encoding",
+						"type": "text"
+					},
+					{
+						"key": "Connection",
+						"value": "keep-alive",
+						"name": "connection",
+						"type": "text"
+					},
+					{
+						"key": "Content-Type",
+						"value": "application/json",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"email\": \"sm@gmail.com\",\r\n    \"password\":\"1234567890\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "text"
+						}
+					}
+				},
+				"url": "http://localhost:5000/users/login"
+			},
+			"response": []
+		},
+		{
+			"name": "Logout",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"url": "http://localhost:5000/users/logout"
+			},
+			"response": []
+		},
+		{
+			"name": "get all users",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": "http://localhost:5000/users/all-user"
+			},
+			"response": []
+		},
+		{
+			"name": "update user",
+			"request": {
+				"method": "PATCH",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\"phone\": \"9753721777\"}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": "http://localhost:5000/users/update/677ec14b83bcf9091b4f5556"
+			},
+			"response": []
+		},
+		{
+			"name": "New request",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": ""
+			},
+			"response": []
+		}
+	]
+}

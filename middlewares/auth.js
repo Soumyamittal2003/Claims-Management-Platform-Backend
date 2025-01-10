@@ -42,39 +42,38 @@ export const auth = async (req, res, next) => {
   }
 };
 
-
 // Role validation for Patient
 export const isPatient = async (req, res, next) => {
-    try {
-      if (req.user.role !== "patient") {
-        return res.status(401).json({
-          success: false,
-          message: "Unauthorized user",
-        });
-      }
-      next();
-    } catch (error) {
-      return res.status(500).json({
+  try {
+    if (req.user.role !== "patient") {
+      return res.status(401).json({
         success: false,
-        message: "Internal Server Error!",
+        message: "Unauthorized user",
       });
     }
-  };
+    next();
+  } catch (error) {
+    return res.status(500).json({
+      success: false,
+      message: "Internal Server Error!",
+    });
+  }
+};
 
-  // Role validation for Insurer
+// Role validation for Insurer
 export const isInsurer = async (req, res, next) => {
-    try {
-      if (req.user.role !== "insurer") {
-        return res.status(401).json({
-          success: false,
-          message: "Unauthorized user",
-        });
-      }
-      next();
-    } catch (error) {
-      return res.status(500).json({
+  try {
+    if (req.user.role !== "insurer") {
+      return res.status(401).json({
         success: false,
-        message: "Internal Server Error!",
+        message: "Unauthorized user",
       });
     }
-  };
+    next();
+  } catch (error) {
+    return res.status(500).json({
+      success: false,
+      message: "Internal Server Error!",
+    });
+  }
+};
